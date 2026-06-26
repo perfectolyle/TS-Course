@@ -1,89 +1,29 @@
-// Type Aliases
-type stringOrNumber = string | number;
+type One = string;
+type Two = string | number;
+type Three = 'hello';
 
-type stringOrNumberArray = (string | number)[];
+// convert to more or less specific
+let a: One = 'hello'; // more specific
+let b = a as Two; // less specific
+let c = a as Three; // more specific
 
-type Guitarist = {
-    name?: string,
-    active: boolean,
-    albums: stringOrNumberArray;
-};
+let d = <One>'world';
+let e = <string | number>'world';
 
-type UserId = stringOrNumber;
 
-let myName: 'Dave';
-
-let userName: 'Dave' | 'John' | 'Jane';
-
-userName = 'Dave';
-
-const add = (a:number, b:number) => {
-    return a + b;
-};
-
-const logMsg = (message: any)  => {
-    console.log(message);
-    return message
+const addOrConcat = (a: number, b: number, c: 'add' | 'concat') => {
+    if(c === 'add') return a + b;
+    return `${a}${b}`;
 };
 
 
-console.log(logMsg(add(1, 2)));
+let myVal: string = addOrConcat(1, 2, 'add') as string;
+let myVal2: number = addOrConcat(1, 2, 'concat') as number;
 
-let subtract = function (a: number, b: number) {
-    return a - b;
-};
+// 10 as string - error
+const checkType = 10 as unknown as string;
+const img = document.querySelector('img') as HTMLImageElement;
+const myImg = document.getElementById('#img') as HTMLImageElement;
 
-logMsg(subtract(1, 2));
-
-type mathFunction = (a: number, b: number) => number;
-// interface mathFunction {
-//     (a: number, b: number): number;
-// }
-
-let multiply: mathFunction = (a, b) => {
-    return a * b;
-};
-
-logMsg(multiply(5, 10));
-
-
-// optional parameters
-
-const addAll = (a: number, b: number, c?: number) => {
-    if (typeof c !== 'undefined') {
-        return a + b + c;
-    }
-    return a + b;
-};
-
-logMsg(addAll(1, 2));
-logMsg(addAll(1, 2, 3));
-
-// default parameters
-
-const sumAll = (a: number, b: number, c: number = 2) => {
-    return a + b + c;
-};
-
-logMsg(sumAll(1, 2));
-logMsg(sumAll(1, 2, 3));
-
-
-// rest parameters
-
-const total = (...nums: number[]) => {
-    return nums.reduce((prev, current) => prev + current);
-};
-
-logMsg(total(1, 2, 3, 4, 10));
-
-const createError = (errMsg: string) => {
-    throw new Error(errMsg);
-};
-
-const numberOrString = (value: number | string ): string => {
-    if (typeof value === 'number') {
-        return 'number';
-    }
-    return 'string';
-}
+// img.src
+// myImg.src

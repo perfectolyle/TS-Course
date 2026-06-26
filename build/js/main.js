@@ -1,53 +1,21 @@
-let myName;
-let userName;
-userName = 'Dave';
-const add = (a, b) => {
-    return a + b;
+// convert to more or less specific
+let a = 'hello'; // more specific
+let b = a; // less specific
+let c = a; // more specific
+let d = 'world';
+let e = 'world';
+const addOrConcat = (a, b, c) => {
+    if (c === 'add')
+        return a + b;
+    return `${a}${b}`;
 };
-const logMsg = (message) => {
-    console.log(message);
-    return message;
-};
-console.log(logMsg(add(1, 2)));
-let subtract = function (a, b) {
-    return a - b;
-};
-logMsg(subtract(1, 2));
-// interface mathFunction {
-//     (a: number, b: number): number;
-// }
-let multiply = (a, b) => {
-    return a * b;
-};
-logMsg(multiply(5, 10));
-// optional parameters
-const addAll = (a, b, c) => {
-    if (typeof c !== 'undefined') {
-        return a + b + c;
-    }
-    return a + b;
-};
-logMsg(addAll(1, 2));
-logMsg(addAll(1, 2, 3));
-// default parameters
-const sumAll = (a, b, c = 2) => {
-    return a + b + c;
-};
-logMsg(sumAll(1, 2));
-logMsg(sumAll(1, 2, 3));
-// rest parameters
-const total = (...nums) => {
-    return nums.reduce((prev, current) => prev + current);
-};
-logMsg(total(1, 2, 3, 4, 10));
-const createError = (errMsg) => {
-    throw new Error(errMsg);
-};
-const numberOrString = (value) => {
-    if (typeof value === 'number') {
-        return 'number';
-    }
-    return 'string';
-};
+let myVal = addOrConcat(1, 2, 'add');
+let myVal2 = addOrConcat(1, 2, 'concat');
+// 10 as string - error
+const checkType = 10;
+const img = document.querySelector('img');
+const myImg = document.getElementById('#img');
 export {};
+// img.src
+// myImg.src
 //# sourceMappingURL=main.js.map
